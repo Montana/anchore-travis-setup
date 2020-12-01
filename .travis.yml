@@ -1,0 +1,32 @@
+---
+sudo: required
+dist: bionic
+notifications:
+  slack:
+    on_failure: always
+matrix:
+  fast_finish: true
+  include:
+
+    # https://github.com/anchore/anchore-engine
+    # https://docs.anchore.com/current/docs/engine/quickstart/
+    - name: "Scan images w Anchore Engine w docker-compose wo snaps on bionic amd64"
+      dist: bionic
+      arch: amd64
+      services:
+        - docker      
+      language: python
+      # python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - pip install -r requirements.txt
+      script:
+        #  Download the docker-compose.yaml file and start
+        - curl https://docs.anchore.com/current/docs/engine/quickstart/docker-compose.yaml > docker-compose.yaml
+        - docker-compose up -d
+        # Verify service availability
+        - docker-compose ps
+      after_success:
+        - deactivate        
