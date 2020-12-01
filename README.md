@@ -55,5 +55,49 @@ You'll see the `script` hook using `cURL` to fetch Anchore, then copying the `do
 
 ![Anchore](anchore.png)
 
+## Further setup 
 
+Travis allows `docker` command execution by default, which makes integrating Anchore Engine as simple as adding the `inline_scan` script to your existing image build pipeline.
 
+```yaml
+services:
+  - docker
+
+env:
+  - IMAGE_NAME="btodhunter/anchore-ci-demo" IMAGE_TAG="travisci"
+
+script:
+  - docker build -t "${IMAGE_NAME}:ci" .
+  - curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- "${IMAGE_NAME}:ci"
+  - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker tag "${IMAGE_NAME}:ci" "${IMAGE_NAME}:${IMAGE_TAG}"
+  - docker push "${IMAGE_NAME}:${IMAGE_TAG}"
+```
+
+Alternatively you can setup `cURL` to fetch Anchore like this: 
+
+```yaml
+- curl https://docs.anchore.com/current/docs/engine/quickstart/docker-compose.yaml > docker-compose.yaml
+```
+
+## Anchore Policy Enforcement
+
+It's fairly easy with Travis and Anchore to setup Anchore Policy Enforcement. You can setup policy enforcement with one command:
+
+```bash
+ curl -s https://ci-tools.anchore.io/inline_scan-v0.6.0 | bash -s -- [options] IMAGE_NAME(s)
+```
+
+These are the scan options Anchore offers:
+
+```bash
+-b  [optional] Path to local Anchore policy bundle.
+-d  [optional] Path to local Dockerfile.
+-v  [optional] Path to directory to be mounted as docker volume. All image archives in directory will be scanned.
+-f  [optional] Exit script upon failed Anchore policy evaluation.
+-p  [optional] Pull remote docker images.
+-r  [optional] Generate analysis reports in your current working directory.
+-t  [optional] Specify timeout for image scanning in seconds (defaults to 300s).
+```
+
+What you read above bodes well for you. With Anchore, you essentially can scan local images before pushing them into a registry, allowing you to inject scans as needed directly into your current workflows and enforce Anchore policy. 
