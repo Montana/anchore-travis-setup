@@ -100,4 +100,8 @@ These are the scan options Anchore offers:
 -t  [optional] Specify timeout for image scanning in seconds (defaults to 300s).
 ```
 
-What you read above bodes well for you. With Anchore, you essentially can scan local images before pushing them into a registry, allowing you to inject scans as needed directly into your current workflows and enforce Anchore policy. 
+What you read above bodes well for you. With Anchore, you essentially can scan local images before pushing them into a registry, allowing you to inject scans as needed directly into your current workflows and enforce Anchore policy. You can see your policies being checked, look for the following: 
+
+![Policy](policy.png)
+
+If you look above, you can see the policies being enforced, scanned, and more. I recommend looking at the `scan options` that were laid out earlier for more verbose and customized options. 
