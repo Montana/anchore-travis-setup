@@ -51,5 +51,9 @@ As you can see above, you're off to a good start, you have your `dist`, `sudo` s
       after_success:
         - deactivate        
 ```
-You'll see the `script` hook using `cURL` to fetch Anchore, then copying the `docker-compose.yaml` file. It then makes sure the container is up by running `docker-compose up -d`. Now you'll want to verify service, the `.travis.yml` file will run `docker-compose ps`. Then of course, after it's done it will deactivate itself. This is Anchore in a simple `.travis.yml` file. 
+You'll see the `script` hook using `cURL` to fetch Anchore, then copying the `docker-compose.yaml` file. It then makes sure the container is up by running `docker-compose up -d`. Now you'll want to verify service, the `.travis.yml` file will run `docker-compose ps`. Then of course, after it's done it will deactivate itself. This is Anchore in a simple `.travis.yml` file. You should see the Anchore table with it's findings at the end of your build as follows: 
+
+![Anchore](anchore.png)
+
+
 
