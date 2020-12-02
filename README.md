@@ -8,6 +8,7 @@ Anchore Engine can be used in several ways:
 * Standalone or interactively.
 * As a service integrated with your CI/CD to bring security/compliance/best-practice enforcement to your build pipeline.
 * As a component integrated into existing container monitoring and control frameworks via integration with its RESTful API.
+* Policy enforcement. 
 
 ## Implementing Anchore into your project via the `.travis.yml` file to check your containers 
 
