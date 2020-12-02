@@ -106,3 +106,9 @@ What you read above bodes well for you. With Anchore, you essentially can scan l
 ![Policy](policy.png)
 
 If you look above, you can see the policies being enforced, scanned, and more. I recommend looking at the `scan options` that were laid out earlier for more verbose and customized options. 
+
+## Why use security scanners for containers? 
+
+Run image scanners during continuous integration. Scanning container images can be a cumbersome process that could be asynchronously executed during continuous integration (CI) using Travis. Including security scans in CI also allows developers to identify vulnerabilities quickly, before new software versions are released.
+
+This is why policy enforcement is crucial. Anchore is perfect for you Travis CI builds. 
