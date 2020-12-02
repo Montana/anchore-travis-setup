@@ -109,7 +109,7 @@ If you look above, you can see the policies being enforced, scanned, and more. I
 
 ## Why use security scanners for containers? 
 
-Run image scanners during continuous integration. Scanning container images can be a cumbersome process that could be asynchronously executed during continuous integration (CI) using Travis. Including security scans in CI also allows developers to identify vulnerabilities quickly, before new software versions are released.
+Running image scanners during continuous integration specifically scanning container images can be a cumbersome process that could be asynchronously executed during continuous integration (CI) using Travis. Including security scans in CI also allows developers to identify vulnerabilities quickly, before new software versions are released.
 
 This is why policy enforcement is crucial. Anchore is perfect for you Travis CI builds. 
 
